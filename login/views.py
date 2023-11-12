@@ -7,6 +7,7 @@ from login.models import User
 
 
 def index(request):
+    print(f"用户访问idnex，Cookie为{request.headers['Cookie']}")
     return render(request, 'login/index.html', {'message': request.GET.get('message')})
 
 
@@ -32,6 +33,7 @@ def login(request):
         user = User.objects.get(username=username)
         if user.password == password:
             request.session['username'] = user.username
+            print(f'{user.username}使用{password}登陆成功')
             return redirect('login:index')
         else:
             return render(request, 'login/login.html', {'error_message': '用户名或密码错误'})
