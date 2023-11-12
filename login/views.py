@@ -7,7 +7,8 @@ from login.models import User
 
 
 def index(request):
-    print(f"用户访问idnex，Cookie为{request.headers['Cookie']}")
+    cookie = request.headers['Cookie']
+    print(f"用户访问idnex，Cookie为{cookie}")
     return render(request, 'login/index.html', {'message': request.GET.get('message')})
 
 
